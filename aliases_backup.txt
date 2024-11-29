@@ -1,0 +1,32 @@
+-='cd -'
+...=../..
+....=../../..
+.....=../../../..
+......=../../../../..
+1='cd -1'
+2='cd -2'
+3='cd -3'
+4='cd -4'
+5='cd -5'
+6='cd -6'
+7='cd -7'
+8='cd -8'
+9='cd -9'
+_='sudo '
+cat=/usr/bin/batcat
+catn=/usr/bin/cat
+catnl='/usr/bin/batcat --paging=never'
+edit-in-kitty='kitten edit-in-kitty'
+egrep='grep -E'
+fgrep='grep -F'
+grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn,.idea,.tox,.venv,venv}'
+history=omz_history
+l='/usr/bin/lsd --group-dirs=first'
+la='/usr/bin/lsd -a --group-dirs=first'
+ll='/usr/bin/lsd -lh --group-dirs=first'
+lla='/usr/bin/lsd -lha --group-dirs=first'
+ls='/usr/bin/lsd --group-dirs=first'
+lsa='ls -lah'
+md='mkdir -p'
+rd=rmdir
+which-command=whence
