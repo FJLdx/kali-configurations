@@ -22,17 +22,121 @@ require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
   }
+
+  -- Indentación visual
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      local hooks = require "ibl.hooks"
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, "IndentBlanklineChar", { fg = "#44475a", nocombine = true })
+        vim.api.nvim_set_hl(0, "IndentBlanklineContextChar", { fg = "#ff79c6", nocombine = true })
+      end)
+
+      require("ibl").setup {
+        indent = { char = "│" },
+        scope = {
+          enabled = true,
+          show_start = true,
+          show_end = false,
+          highlight = { "IndentBlanklineContextChar" },
+        },
+      }
+    end
+  }
+
+  -- Barra de estado
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = function()
+      require('lualine').setup {
+        options = {
+          theme = 'dracula',
+          section_separators = { left = '', right = '' },
+          component_separators = { left = '', right = '' },
+        }
+      }
+    end
+  }
+
+  -- Explorador de archivos
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function()
+      require('nvim-tree').setup {}
+    end
+  }
+
+  -- Búsqueda avanzada
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('telescope').setup {}
+    end
+  }
+
+  -- Visualización de diagnósticos
+  use {
+    'folke/trouble.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function()
+      require('trouble').setup {}
+    end
+  }
+
+  -- Terminal integrado
+  use {
+    'akinsho/toggleterm.nvim',
+    config = function()
+      require('toggleterm').setup {
+        open_mapping = [[<c-\>]],
+        direction = 'float',
+      }
+    end
+  }
+
+  -- Comentarios rápidos
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup {}
+    end
+  }
+
+  -- Mejora de edición
+  use {
+    'kylechui/nvim-surround',
+    config = function()
+      require('nvim-surround').setup {}
+    end
+  }
+
+  -- Cursor más visible
+  use 'romainl/vim-cool'
+
+  -- Autocompletado de pares
+  use {
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup {}
+    end
+  }
 end)
 
 -- Configuración de opciones generales
 vim.opt.termguicolors = true -- Habilitar colores verdaderos
 
+-- Configuración de números de línea absolutos
+vim.opt.number = true -- Mostrar números de línea absolutos
+vim.opt.signcolumn = "yes" -- Añadir columna de signos para espacio adicional
+vim.opt.fillchars:append { vert = '┃' } -- Carácter vertical para la línea divisoria
+
 -- Configuración de Dracula
 vim.g.dracula_transparent_bg = true -- Fondo transparente
 vim.cmd("colorscheme dracula") -- Activar Dracula
-
--- Personalización del fondo transparente
-vim.cmd("highlight Normal guibg=none")
 
 -- Configuración de Treesitter
 require'nvim-treesitter.configs'.setup {
@@ -68,6 +172,9 @@ cmp.setup({
   }
 })
 
+-- Integración de nvim-autopairs con nvim-cmp
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+
 -- Configuración del servidor de lenguaje Bash
 require'lspconfig'.bashls.setup{}
-
