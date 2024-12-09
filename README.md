@@ -1,56 +1,83 @@
 # Kali Configurations
-
-Este repositorio contiene las configuraciones personalizadas utilizadas en mi máquina virtual Kali Linux. El objetivo es documentar y versionar las configuraciones clave para facilitar su mantenimiento y replicación en caso de reinstalación.
-
-## Archivos incluidos
-- `init.lua`: Configuración personalizada de Neovim, que incluye:
-  - Autocompletado con `nvim-cmp`.
-  - Resaltado avanzado con `Treesitter`.
-  - Complementos visuales como `lualine`, `telescope`, y `indent-blankline`.
-  - Funcionalidades adicionales como:
-    - Cierre automático de delimitadores con `nvim-autopairs`.
-    - Explorador de archivos con `nvim-tree`.
-    - Comentarios rápidos con `Comment.nvim`.
-
-## Cambios recientes
-- **2024-11-29**: 
-  - Añadido el complemento `nvim-autopairs` para cierre automático de delimitadores.
-  - Mejoras visuales en Neovim:
-    - Barra de estado con `lualine.nvim`.
-    - Explorador de archivos con `nvim-tree.lua`.
-    - Búsquedas rápidas con `telescope.nvim`.
-    - Resaltado de indentación y bloques de código con `indent-blankline.nvim`.
-- **2024-11-28**: 
-  - Actualizada la configuración de Neovim para integrar nuevos colores y divisiones claras entre números de línea y código.
-  - Configuración de `Treesitter` para mejorar el resaltado de sintaxis.
-- **2024-11-27**:
-  - Creación inicial del repositorio y subida del script para generar backups de configuraciones del sistema Kali Linux.
-
-## Uso
-1. **Neovim**:
-   - Copia el archivo `init.lua` a la ruta:
-     ```
-     ~/.config/nvim/init.lua
-     ```
-   - Asegúrate de tener instalado `packer.nvim` para gestionar los complementos:
-     ```
-     git clone --depth 1 https://github.com/wbthomason/packer.nvim\
-     ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-     ```
-   - Inicia Neovim y ejecuta `:PackerSync` para instalar los complementos.
-
-2. **Script de backup**:
-   - Ejecuta el script para generar un archivo comprimido con las configuraciones actuales de tu máquina:
-     ```
-     bash generate_backup.sh
-     ```
-   - El archivo comprimido se generará automáticamente en la carpeta compartida de tu máquina virtual.
-
-## Requisitos
-- **Neovim 0.7+**.
-- Herramientas adicionales como `ripgrep` para búsquedas avanzadas con `telescope`.
-
-## Contribuciones
-Este repositorio está en constante evolución mientras aprendo y configuro nuevas herramientas en mi entorno Kali Linux. Si tienes sugerencias o mejoras, no dudes en compartirlas.
-
+This repository contains the personalized configurations used in my Kali Linux virtual
+machine. The goal is to document and version key configurations to facilitate
+maintenance and replication in case of reinstallation.
 ---
+## Files Included
+- **Neovim Configuration (`init.lua`)**:
+- Autocompletion with `nvim-cmp`.
+- Advanced syntax highlighting with `Treesitter`.
+- Visual enhancements such as:
+- Status bar: `lualine`.
+- File explorer: `nvim-tree`.
+- Quick searches: `telescope`.
+- Code indentation and block highlighting: `indent-blankline`.
+- Automatic delimiter closing: `nvim-autopairs`.
+- **Zsh Configuration (`.zshrc`)**:
+- Customized aliases.
+- Advanced prompt configuration with `oh-my-zsh`.
+- **BSPWM Configuration (`bspwmrc`)**:
+- Window manager setup.
+- **SXHKD Configuration (`sxhkdrc`)**:
+- Keyboard shortcuts for window management.
+- **Bash Configuration (`.bashrc`)**:
+- Alias definitions and environment variables.
+---
+## Recent Changes
+- **2024-12-08**:
+- Added Zsh configuration to the repository.
+- Included BSPWM and SXHKD configurations.
+- **2024-11-29**:
+- Improved Neovim with `nvim-autopairs` and visual plugins.
+- **2024-11-28**:
+- Updated Neovim's colors and line numbering.
+- Enhanced syntax highlighting with `Treesitter`.
+---
+## Usage
+1. **Neovim Configuration**:
+- Copy `init.lua` to:
+```
+~/.config/nvim/init.lua
+```
+- Install `packer.nvim` for managing plugins:
+```
+git clone --depth 1 https://github.com/wbthomason/packer.nvim
+~/.local/share/nvim/site/pack/packer/start/packer.nvim
+```
+- Open Neovim and run:
+```
+:PackerSync
+```
+2. **Zsh Configuration**:
+- Copy `.zshrc` to:
+```
+~/.zshrc
+```
+- Reload the configuration:
+```
+source ~/.zshrc
+```
+3. **BSPWM and SXHKD Configuration**:
+- Copy `bspwmrc` and `sxhkdrc` to their respective locations:
+```
+~/.config/bspwm/bspwmrc
+~/.config/sxhkd/sxhkdrc
+```
+4. **Bash Configuration**:
+- Copy `.bashrc` to:
+```
+~/.bashrc
+```
+- Reload the configuration:
+```
+source ~/.bashrc
+```
+---
+## Requirements
+- **Neovim 0.7+**
+- Additional tools for Neovim:
+- `ripgrep` for advanced searches (`telescope` plugin).
+---
+## Contributions
+This repository is constantly evolving as I learn and configure new tools in my Kali
+Linux environment. Suggestions and improvements are welcome.
